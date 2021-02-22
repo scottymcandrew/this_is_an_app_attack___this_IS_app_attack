@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% set active_page = 'cookie-replay' %}
+
+{% block title %}C00ki3 R3play{% endblock %}
+
+{% block content %}
+
+    <div class="row mb-5">
+        <div class="col">
+            <h2><em>“The bad artists imitate, the great artists steal.”</em></h2>
+            <div role="doc-subtitle">Banksy, at some point</div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+
+        <div class="col-md-3 left-bar bg-light p-4">
+            {% if not cookies %}
+                <form action="{{ url_for('cookie_attack') }}" method="POST">
+                    <div class="mb-3">
+                        <label for="cookie-uuid" class="form-label">Enter UUID of stolen cookie!</label>
+                        <input type="text" class="form-control" id="cookie-uuid" name="cookie-uuid"
+                               aria-describedby="cookie-uuid">
+                        <div id="cookieHelp" class="form-text">Grab from API</div>
+                    </div>
+                    <button type="submit" class="btn btn-danger">GET COOKIES!</button>
+                </form>
+            {% endif %}
+            {% if cookies %}
+                <form action="{{ url_for('cookie_blastoff') }}" method="POST">
+                    <div class="mb-3">
+                        <label for="cookie-header" class="form-label">Cookie Header</label>
+                        <input type="text" class="form-control" id="cookie-header" name="cookie-header"
+                               value="{{ cookies }}" aria-describedby="cookie-header">
+                        <div id="cookieHelp" class="form-text">This should be filled in automatically</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="url" class="form-label">URL</label>
+                        <input type="text" class="form-control" id="url" name="url"
+                               value="http://" aria-describedby="url">
+                        <div id="cookieHelp" class="form-text">URL to gain immediate access to the target server</div>
+                    </div>
+                    <button type="submit" class="btn btn-danger">BLAST OFF!</button>
+                </form>
+            {% endif %}
+        </div>
+
+        <div class="col-md-9 right-bar output-panel bg-alert p-4">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th><h5 class="code-header">Stoken cookies!</h5></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><code>{{ cookies }}</code></td>
+                </tr>
+                <tr>
+                    <th><h5 class="code-header">Attack Output</h5></th>
+                </tr>
+                {% if cookies %}
+
+                    <tr>
+                        <td><code></code></td>
+                    </tr>
+
+                {% endif %}
+
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                {% if html %}
+                    <div class="response-page">
+                        {{ html }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% set active_page = 'portal' %}
+
+{% block title %}This is an App-Attack... This IS App-Attack!{% endblock %}
+
+{% block content %}
+
+    <div class="row mb-5">
+        <div class="col">
+            <h2><em>“If at First You Don't Succeed – Call an Airstrike”</em></h2>
+            <div role="doc-subtitle">Banksy, sometime in 2010 (I think)</div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+
+        <div class="col-md-3 left-bar bg-light p-4">
+            <form action="{{ url_for('attack') }}" method="POST">
+                <div class="mb-3">
+                    <label for="base_url" class="form-label">Enter Base URL to Attack!</label>
+                    <input type="url" class="form-control" id="base_url" name="base-url" aria-describedby="baseURL"
+                           value="http://">
+                    <div id="urlHelp" class="form-text">Just base URL with http/https e.g. http://example.com</div>
+                </div>
+                <div class="mb-3">
+                    <label for="target-type">Select the type of app you'd like to pwn</label>
+                    <select class="form-select" id='target-type' name="target-type" aria-label="Select type of target">
+                        <option selected value="1">DVWA</option>
+                        <option value="2">Sock-Shop (NOT IMPLEMENTED YET)</option>
+                        <option value="3">Custom (NOT IMPLEMENTED YET)</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="user-agent">What User-Agent to use?</label>
+                    <select class="form-select" id='user-agent' name="user-agent" aria-label="Select type of target">
+                        <option selected value="1">Firefox Mac</option>
+                        <option value="2">Chrome Mac</option>
+                        <option value="3">Safari (Mobile)</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <h5>Remember to start MSF listener if shell access is needed!</h5>
+                </div>
+                <button type="submit" class="btn btn-danger">ATTACK!</button>
+            </form>
+        </div>
+
+        <div class="col-md-9 right-bar output-panel bg-alert p-4">
+            <h5 class="code-header">Results of Attack!</h5>
+            {% if attack_complete %}
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th><h5 class="code-header">Users we have extracted from the DB</h5></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for s in sql_inj_output %}
+                        <tr>
+                            <td><code>{{ s }}</code></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th><h5 class="code-header">Command Injection Results</h5></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>{{ cmd_inj_output }}</code></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th><h5 class="code-header">XSS Results</h5></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr>
+                        <td><code>Reflected XSS attempted, please check WAAS!</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>Stored XSS completed. This was injected into the site:<br>
+                            {{ xss_s_output }}</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>**PLEASE COPY THIS VALUE TO RETRIEVE COOKIES:<br>
+                            {{ xss_uuid }}</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>Navigate <a href="http://dvwa.scottymcandrew.com/vulnerabilities/xss_s/"
+                                              target="_blank">here</a> and then check our web stealer below!<br>
+                            <a href="https://mymcnj4hbc.execute-api.eu-west-2.amazonaws.com/prod/bingo" target="_blank">
+                                https://mymcnj4hbc.execute-api.eu-west-2.amazonaws.com/prod/bingo</a></code>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th><h5 class="code-header">File Upload and Shell Status</h5></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>{{ file_upload_output }}<br>
+                            Show how 1337 you are on the Kali machine, if you dare!</code></td>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
+            {% elif attack_complete == False %}
+                <img src="{{ url_for('static', filename='images/ahahahreal.gif') }}" alt="Ah ah ah Jurassic Park">
+            {% endif %}
+
+    </div>
+
+{% endblock %}
