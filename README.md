@@ -84,3 +84,4 @@ This page is purely there for some notes when performing the demo. I'll leave th
 - Changing the user-agent currently has issues, so the selector is not implemented yet.
 - Only DVWA is implemented currently.
 - Cookie reply output is bare HTML.
+- DynamoDB table key is still 'timestamp' but actually contains a UUID, which as it turns out, is _far_ easier to search for ;-)
