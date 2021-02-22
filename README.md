@@ -23,7 +23,7 @@ Then to run locally:
 
 Then navigate to your browser to localhost on the Flask server port (usually 5000). Ensure you have outbound connectivity of course!
 
-To deploy fully / publicly there are many methods, ranging from Heroko to Cloud Service Providers. One example is using GCP's App Engine: https://cloud.google.com/appengine/docs/standard/python3/building-app
+To deploy fully / publicly there are many methods, ranging from Heroku to Cloud Service Providers. One example is using GCP's App Engine: https://cloud.google.com/appengine/docs/standard/python3/building-app
 
 # Features
 
