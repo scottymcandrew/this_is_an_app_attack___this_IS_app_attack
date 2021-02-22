@@ -61,6 +61,8 @@ If the attack was successful, output will appear on the right-panel. **Note the 
 
 ## Cookie Replay
 
+**Please note** after the last step you'll need to navigate to the page where the injected code is!
+
 On this section you enter a UUID of a stolen cookie (either from the main attack section, or by querying your API gateway).
 
 When entered, click the Get Cookies button. That will query your API gateway and grab all the details! If successful you'll see the cookies on the right panel, and the button changes to Blast Off.
