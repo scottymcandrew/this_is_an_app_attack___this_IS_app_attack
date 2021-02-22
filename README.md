@@ -7,7 +7,7 @@ P.S. Neil Buchanan _is_ Banksy!
 
 This Flask application was designed to automatically launch attacks against web applications.
 
-This is not majorly sophisticatd (yet!) but was conceived to have a one-stop-shop launchpad to perform web app security demos.
+This is not majorly sophisticated (yet!) but was conceived to have a one-stop-shop launchpad to perform web app security demos.
 
 # Installation
 
